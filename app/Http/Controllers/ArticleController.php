@@ -15,8 +15,8 @@ class ArticleController extends Controller
     public function index()
     {
         $article = Article::create([
-            'title' => "Mon titre",
-            'content' => "Ceci est le contenu de mon article"
+            'title' => "Mon titre 2",
+            'content' => "Ceci est le NOUVEAU contenu de mon article"
         ]);
         dd($article);
     }
