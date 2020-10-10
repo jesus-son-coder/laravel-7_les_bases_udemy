@@ -15,8 +15,8 @@ use App\Http\Controllers\ArticleController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-})->name('my_route');
+    return view('main.home');
+})->name('home');
 
 // Route::get('/new', [ArticleController::class, 'create'])->middleware('auth');
 Route::get('/new', [ArticleController::class, 'create']);
