@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
+    public function __construct()
+    {
+        /* Lorsque le middleware "auth" est placé dans le Constructeur,
+            alors, toutes les fonction de ce Controller sont protégées par ce middleware : */
+        $this->middleware('auth');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
