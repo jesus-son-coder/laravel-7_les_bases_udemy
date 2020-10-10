@@ -14,11 +14,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $article = Article::create([
-            'title' => "Mon titre 2",
-            'content' => "Ceci est le NOUVEAU contenu de mon article"
-        ]);
-        dd($article);
+
     }
 
     /**
@@ -26,9 +22,9 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        return view('components.create');
     }
 
     /**
@@ -39,7 +35,7 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
