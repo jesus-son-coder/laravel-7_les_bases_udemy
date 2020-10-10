@@ -18,7 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('my_route');
 
-// Route::get('/post-article', 'ArticleController@create');
-Route::get('/post-article', [ArticleController::class, 'create']);
+Route::get('/new', [ArticleController::class, 'create'])->middleware('auth');
 
 Route::post('/store', 'ArticleController@store')->name('article.store');
+
+Route::get('/failure', function(){
+    return view('components.failure');
+})->name('failure');
