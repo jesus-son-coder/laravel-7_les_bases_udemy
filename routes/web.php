@@ -18,13 +18,18 @@ Route::get('/', function () {
     return view('main.home');
 })->name('home');
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+// Les Routes de connexions sont résumées avec cette seule instruction ci-dessous :
 Auth::routes();
 
+// Ci-dessous, on surcharge la route "logout" uniquement :
 Route::get('/logout', function() {
     auth()->logout();
     Session()->flush();
 
     return Redirect::to('/');
-});
+})->name('logout');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

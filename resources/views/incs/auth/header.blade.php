@@ -94,7 +94,7 @@
                     </div>
                 </li>
                 <div class="dropdown-divider"></div>
-                <li><a href="#"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+                <li><a href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
             </ul>
         </li>
     </ul>
