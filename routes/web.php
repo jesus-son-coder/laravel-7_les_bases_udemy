@@ -1,7 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,16 +18,13 @@ Route::get('/', function () {
     return view('main.home');
 })->name('home');
 
-// Route::get('/new', [ArticleController::class, 'create'])->middleware('auth');
-Route::get('/new', [ArticleController::class, 'create']);
-
-// Route::post('/store', 'ArticleController@store')->middleware('auth')->name('article.store');
-Route::post('/store', 'ArticleController@store')->name('article.store');
-
-Route::get('/failure', function(){
-    return view('components.failure');
-})->name('failure');
-
 Auth::routes();
+
+Route::get('/logout', function() {
+    auth()->logout();
+    Session()->flush();
+
+    return Redirect::to('/');
+});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

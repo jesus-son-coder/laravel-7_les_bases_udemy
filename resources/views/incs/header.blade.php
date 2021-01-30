@@ -2,6 +2,8 @@
 <header class="header-section">
     <div class="container-fluid">
         <div class="nav-menu">
+            <!-- On vérifie si l'utilisateur est connecté,
+                en fonction, on affiche une Navbar diférente : -->
             @if (Auth::check())
                 @include('incs.auth.header')
             @else
