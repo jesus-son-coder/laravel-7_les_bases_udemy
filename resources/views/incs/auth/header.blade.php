@@ -88,8 +88,8 @@
                 <li>
                     <div class="d-flex justify-content-between py-3 px-3">
                         <div class="user-infos">
-                            <p>Utilisateur</p>
-                            <small>utilisateur@email.com</small>
+                        <p>{{ Auth::user()->name }}</p>
+                            <small>{{ Auth::user()->email }}</small>
                         </div>
                     </div>
                 </li>
