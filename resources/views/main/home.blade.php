@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section('content')
 
     <section class="hero-section set-bg" data-setbg="{{ asset('img/hero.jpg') }}">

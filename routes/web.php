@@ -27,3 +27,7 @@ Route::post('/store', 'ArticleController@store')->name('article.store');
 Route::get('/failure', function(){
     return view('components.failure');
 })->name('failure');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
