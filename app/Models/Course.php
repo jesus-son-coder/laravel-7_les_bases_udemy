@@ -25,4 +25,9 @@ class Course extends Model
         return $this->belongsTo('App\Models\User');
     }
 
+    public function sections()
+    {
+        return $this->hasMany('App\Models\Section');
+    }
+
 }

@@ -40,3 +40,6 @@ Route::get('/instructor/courses/{id}/delete', 'InstructorController@destroy')->n
 // Pricing :
 Route::get('/instructor/courses/{id}/pricing', 'PricingController@pricing')->name('pricing.index');
 Route::post('/instructor/courses/{id}/pricing/store', 'PricingController@store')->name('pricing.store');
+
+// Curriculum :
+Route::get('/instructor/courses/{id}/curriculum', 'CurriculumController@index')->name('instructor.curriculum.index');
