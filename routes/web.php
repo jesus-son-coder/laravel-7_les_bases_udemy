@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'MainController@home')->name('home')->name('main.home');
+Route::get('/', 'MainController@home')->name('main.home');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -34,3 +34,4 @@ Route::get('/instructor/overview', 'InstructorController@index')->name('instruct
 Route::get('/instructor/new', 'InstructorController@create')->name('instructor.create');
 Route::post('/instructor/store', 'InstructorController@store')->name('instructor.store');
 Route::get('/instructor/{id}/edit', 'InstructorController@edit')->name('instructor.edit');
+Route::put('/instructor/{id}/update', 'InstructorController@update')->name('instructor.update');

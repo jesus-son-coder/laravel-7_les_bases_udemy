@@ -123,7 +123,39 @@ class InstructorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $course = Course::find($id);
+
+        $course->title = $request->input('title');
+        $course->subtitle = $request->input('subtitle');
+        $course->description = $request->input('description');
+
+        $slugify = new Slugify();
+        $course->slug = $slugify->slugify($course->title);
+
+        $course->category_id = $request->input('category');
+
+        if($request->file('image')) {
+            $image = $request->file('image');
+
+            // Otenir le nom de l'image (sans le chemin) :
+            $imageFullName = $image->getClientOriginalName();
+
+            // Obtenir le nom de l'image sans son extension :
+            $imageName = pathinfo($imageFullName, PATHINFO_FILENAME);
+
+            // Récupérer l'extension de l'image :
+            $extension = $image->getClientOriginalExtension();
+
+            $file = time() . '_' . $imageName . '.' . $extension;
+
+            $image->storeAs('public/courses/' . Auth::user()->id, $file);
+
+            $course->image = $file;
+        }
+
+        $course->save();
+
+        return redirect()->route('instructor.index');
     }
 
     /**
