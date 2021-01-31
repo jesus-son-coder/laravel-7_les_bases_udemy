@@ -30,4 +30,5 @@ Route::get('/logout', function() {
     return Redirect::to('/');
 })->name('logout');
 
-Route::get('/instructor/overview', 'InstructorController@index');
+Route::get('/instructor/overview', 'InstructorController@index')->name('instructor.index');
+Route::get('/instructor/new', 'InstructorController@create')->name('instructor.create');

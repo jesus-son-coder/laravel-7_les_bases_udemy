@@ -9,7 +9,7 @@
                 <div class="section-title">
                     <h2>Cours</h2>
                     <p class="mt-3">Dès maintenant, créez votre prochain cours en quelques clics !</p>
-                    <a href="#" class="primary-btn mt-3">
+                    <a href="{{ route('instructor.create') }}" class="primary-btn mt-3">
                         <i class="fas fa-plus"></i>
                         Nouveau cours
                     </a>
