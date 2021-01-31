@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'MainController@home')->name('home');
+Route::get('/', 'MainController@home')->name('home')->name('main.home');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -33,3 +33,4 @@ Route::get('/logout', function() {
 Route::get('/instructor/overview', 'InstructorController@index')->name('instructor.index');
 Route::get('/instructor/new', 'InstructorController@create')->name('instructor.create');
 Route::post('/instructor/store', 'InstructorController@store')->name('instructor.store');
+Route::get('/instructor/{id}/edit', 'InstructorController@edit')->name('instructor.edit');

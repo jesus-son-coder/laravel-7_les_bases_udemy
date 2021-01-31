@@ -31,7 +31,7 @@
                         <div class="blog-item set-bg" data-setbg="/storage/courses/{{ $course->user_id }}/{{ $course->image }}">
                         </div>
                         <div class="btn-actions d-flex justify-content-center">
-                            <a href="#" class="primary-btn">
+                            <a href="{{ route('instructor.edit', $course->id) }}" class="primary-btn">
                                 <i class="fas fa-edit"></i>
                                 Modifier
                             </a>

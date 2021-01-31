@@ -105,7 +105,13 @@ class InstructorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $course = Course::find($id);
+        $categories = Category::all();
+
+        return view('instructor.edit', [
+            'course' => $course,
+            'categories' => $categories
+        ]);
     }
 
     /**
