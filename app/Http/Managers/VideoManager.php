@@ -17,4 +17,13 @@ class VideoManager
         $video->storeAs('public/courses_sections/' . Auth::user()->id, $file);
         return $file;
     }
+
+    public function getVideoDuration($videoFile)
+    {
+        $getId3 = new \getID3();
+        $pathVideo = 'storage/courses_sections/' . Auth::user()->id . '/' . $videoFile;
+        $fileAnalyzed = $getId3->analyze($pathVideo);
+        $playtime = $fileAnalyzed['playtime_string'];
+        return $playtime;
+    }
 }

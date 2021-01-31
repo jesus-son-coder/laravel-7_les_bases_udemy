@@ -55,10 +55,7 @@ class CurriculumController extends Controller
 
         // Calcul du Temps de la video :
         // -----------------------------
-        $getId3 = new \getID3();
-        $pathVideo = 'storage/courses_sections/' . Auth::user()->id . '/' . $videoFile;
-        $fileAnalyzed = $getId3->analyze($pathVideo);
-        $playtime = $fileAnalyzed['playtime_string'];
+        $playtime = $this->videoManager->getVideoDuration($videoFile);
         $section->playtime_seconds = $playtime;
 
         $section->save();
