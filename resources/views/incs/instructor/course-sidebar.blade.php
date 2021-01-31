@@ -20,6 +20,12 @@
             <li>
                 <a href="#">Participants</a>
             </li>
+            <li>
+                <a href="{{ route('instructor.delete', $course->id) }}" class="btn btn-danger text-left px-3">
+                    <i class="fas fa-trash"></i>
+                    Supprimer le cours
+                </a>
+            </li>
         </ul>
         <div class="d-flex justify-content-around">
             <a class="primary-btn" href="#">

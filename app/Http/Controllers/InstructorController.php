@@ -155,7 +155,7 @@ class InstructorController extends Controller
 
         $course->save();
 
-        return redirect()->route('instructor.index');
+        return redirect()->route('instructor.index')->with('success', "Vos modifications ont été enregistrées avec succès !");
     }
 
     /**
@@ -166,6 +166,8 @@ class InstructorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $course = Course::find($id);
+        $course->delete();
+        return redirect()->route('instructor.index')->with('success', "Le cours a bien été supprimé !");
     }
 }
