@@ -9,7 +9,9 @@ class MainController extends Controller
 {
     public function home()
     {
-        dd(Course::all());
+        //dd(Course::all());
+        $course = Course::where('id',1)->firstOrFail();
+        dd($course->category);
         return view('main.home');
     }
 }
