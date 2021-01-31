@@ -32,3 +32,4 @@ Route::get('/logout', function() {
 
 Route::get('/instructor/overview', 'InstructorController@index')->name('instructor.index');
 Route::get('/instructor/new', 'InstructorController@create')->name('instructor.create');
+Route::post('/instructor/store', 'InstructorController@store')->name('instructor.store');

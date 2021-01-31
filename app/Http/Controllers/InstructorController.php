@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Course;
+use Cocur\Slugify\Slugify;
 use Illuminate\Http\Request;
 use \Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class InstructorController extends Controller
 {
@@ -45,7 +48,16 @@ class InstructorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $course = new Course();
+        $course->title = $request->input('title');
+        $course->subtitle = $request->input('subtitle');
+        $course->description = $request->input('description');
+
+        $slugify = new Slugify();
+        $course->slug = $slugify->slugify($course->title);
+
+        $course->category_id = $request->input('category');
+        $course->user_id = Auth::user()->id;
     }
 
     /**
