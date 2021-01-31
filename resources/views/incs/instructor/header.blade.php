@@ -21,7 +21,7 @@
                     <li>
                     <li>
                         <a class="nav-link" href="#">
-                            <img class="w-25 border-rounded rounded-circle" src="https://blog.hyperiondev.com/wp-content/uploads/2019/02/Blog-Types-of-Web-Dev.jpg"/>
+                            <img class="w-25 border-rounded rounded-circle" src="https://uploads-ssl.webflow.com/5bddf05642686caf6d17eb58/5dc2fd00c29f7abeadd7c332_gPZwCbdS.jpg"/>
                         </a>
                         <ul class="dropdown">
                             <li>
