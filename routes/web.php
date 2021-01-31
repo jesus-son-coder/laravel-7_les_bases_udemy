@@ -41,5 +41,7 @@ Route::get('/instructor/courses/{id}/delete', 'InstructorController@destroy')->n
 Route::get('/instructor/courses/{id}/pricing', 'PricingController@pricing')->name('pricing.index');
 Route::post('/instructor/courses/{id}/pricing/store', 'PricingController@store')->name('pricing.store');
 
-// Curriculum :
+// Curriculum et Sections :
 Route::get('/instructor/courses/{id}/curriculum', 'CurriculumController@index')->name('instructor.curriculum.index');
+Route::get('/instructor/courses/{id}/curriculum/new', 'CurriculumController@create')->name('instructor.curriculum.create');
+Route::post('/instructor/courses/{id}/curriculum/store', 'CurriculumController@store')->name('instructor.curriculum.store');

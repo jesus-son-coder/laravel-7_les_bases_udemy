@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Section;
+use Cocur\Slugify\Slugify;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CurriculumController extends Controller
 {
@@ -14,5 +17,49 @@ class CurriculumController extends Controller
         return view('instructor.curriculum.index',[
             'course' => $course
         ]);
+    }
+
+    public function create($id)
+    {
+        $course = Course::find($id);
+        return view('instructor.curriculum.create', [
+            'course' => $course
+        ]);
+    }
+
+    public function store(Request $request, $id)
+    {
+        $course = Course::find($id);
+
+        $section = new Section();
+        $section->name = $request->input('section_name');
+
+        $slugify = new Slugify();
+        $section->slug = $slugify->slugify($section->name);
+
+        $section->course_id = $id;
+
+        // Traitement de la video :
+        // ------------------------
+        $video = $request->file('section_video');
+        $fileFullname = $video->getClientOriginalName();
+        $filename = pathinfo($fileFullname, PATHINFO_FILENAME);
+        $extension = $video->getClientOriginalExtension();
+        $file = time() . '_' . $filename . "." . $extension;
+        $video->storeAs('public/courses_sections/' . Auth::user()->id, $file);
+        $section->video = $file;
+
+        // Calcul du Temps de la video :
+        // -----------------------------
+        $getId3 = new \getID3();
+        $pathVideo = 'storage/courses_sections/' . Auth::user()->id . '/' . $file;
+        $fileAnalyzed = $getId3->analyze($pathVideo);
+        $playtime = $fileAnalyzed['playtime_string'];
+        $section->playtime_seconds = $playtime;
+
+        $section->save();
+
+        return redirect()->route('instructor.curriculum.index', $course->id);
+
     }
 }
