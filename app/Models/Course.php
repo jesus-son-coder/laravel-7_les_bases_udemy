@@ -12,10 +12,17 @@ class Course extends Model
     // Nouvelle propriété pour établir la liaison entre Course et Category :
     public function category()
     {
-        // Cas d'une Relation OneToMany :
+        // Cas d'une Relation ManyToOne :
         // ------------------------------
         // Un Cours appartient à une (seule) Category
         return $this->belongsTo('App\Models\Category');
+    }
+
+    // Le Propriétaire du Cours :
+    public function user()
+    {
+        // Cas d'une Relation ManyToOne :
+        return $this->belongsTo('App\Models\User');
     }
 
 }
