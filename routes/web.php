@@ -33,6 +33,10 @@ Route::get('/logout', function() {
 Route::get('/instructor/overview', 'InstructorController@index')->name('instructor.index');
 Route::get('/instructor/new', 'InstructorController@create')->name('instructor.create');
 Route::post('/instructor/store', 'InstructorController@store')->name('instructor.store');
-Route::get('/instructor/{id}/edit', 'InstructorController@edit')->name('instructor.edit');
-Route::put('/instructor/{id}/update', 'InstructorController@update')->name('instructor.update');
-Route::get('/instructor/{id}/delete', 'InstructorController@destroy')->name('instructor.delete');
+Route::get('/instructor/courses/{id}/edit', 'InstructorController@edit')->name('instructor.edit');
+Route::put('/instructor/courses/{id}/update', 'InstructorController@update')->name('instructor.update');
+Route::get('/instructor/courses/{id}/delete', 'InstructorController@destroy')->name('instructor.delete');
+
+// Pricing :
+Route::get('/instructor/courses/{id}/pricing', 'PricingController@pricing')->name('pricing.index');
+Route::post('/instructor/courses/{id}/pricing/store', 'PricingController@store')->name('pricing.store');
