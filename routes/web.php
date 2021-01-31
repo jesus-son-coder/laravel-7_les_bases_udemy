@@ -45,3 +45,5 @@ Route::post('/instructor/courses/{id}/pricing/store', 'PricingController@store')
 Route::get('/instructor/courses/{id}/curriculum', 'CurriculumController@index')->name('instructor.curriculum.index');
 Route::get('/instructor/courses/{id}/curriculum/new', 'CurriculumController@create')->name('instructor.curriculum.create');
 Route::post('/instructor/courses/{id}/curriculum/store', 'CurriculumController@store')->name('instructor.curriculum.store');
+Route::get('/instructor/courses/{id}/curriculum/{sectionId}/edit', 'CurriculumController@edit')->name('instructor.curriculum.edit');
+Route::put('/instructor/courses/{id}/curriculum/{sectionId}/update', 'CurriculumController@update')->name('instructor.curriculum.update');

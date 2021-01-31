@@ -48,7 +48,10 @@
                                                             <i class="fas fa-trash"></i>
                                                             Supprimer
                                                         </a>
-                                                        <a class="btn btn-warning" href="#">
+                                                        <a class="btn btn-warning" href="{{ route('instructor.curriculum.edit', [
+    'id' => $course->id,
+    'sectionId' => $section->id
+]) }}">
                                                             <i class="fas fa-edit"></i>
                                                             Modifier
                                                         </a>
