@@ -58,6 +58,32 @@ class InstructorController extends Controller
 
         $course->category_id = $request->input('category');
         $course->user_id = Auth::user()->id;
+
+        /* ********************************************************** */
+        /*           Traitement du stockage de l'image                */
+        /* ********************************************************** */
+
+        // Récupérer l'objet image :
+        $image = $request->file('image');
+
+        // Otenir le nom de l'image (sans le chemin) :
+        $imageFullName = $image->getClientOriginalName();
+
+        // Obtenir le nom de l'image sans son extension :
+        $imageName = pathinfo($imageFullName, PATHINFO_FILENAME);
+
+        // Récupérer l'extension de l'image :
+        $extension = $image->getClientOriginalExtension();
+
+        $file = time() . '_' . $imageName . '.' . $extension;
+
+        $image->storeAs('public/courses/' . Auth::user()->id, $file);
+
+        $course->image = $file;
+
+        $course->save();
+
+        return redirect()->route('instructor.index');
     }
 
     /**

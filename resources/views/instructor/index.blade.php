@@ -28,7 +28,7 @@
                                 <span><i class="fa fa-clock-o"></i> {{ $course->created_at }}</span>
                             </div>
                         </div>
-                        <div class="blog-item set-bg" data-setbg="https://blog.hyperiondev.com/wp-content/uploads/2019/02/Blog-Types-of-Web-Dev.jpg">
+                        <div class="blog-item set-bg" data-setbg="/storage/courses/{{ $course->user_id }}/{{ $course->image }}">
                         </div>
                         <div class="btn-actions d-flex justify-content-center">
                             <a href="#" class="primary-btn">

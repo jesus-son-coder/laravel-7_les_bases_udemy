@@ -24,7 +24,7 @@
                         <div class="col-lg-12">
                             <select class="form-control" name="category">
                                 @foreach($categories as $categorie)
-                                    <option value="cat-{{ $categorie->id }}">{{ $categorie->name }}</option>
+                                    <option value="{{ $categorie->id }}">{{ $categorie->name }}</option>
                                 @endforeach
                             </select>
                         </div>
