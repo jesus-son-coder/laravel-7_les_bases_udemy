@@ -37,6 +37,7 @@ Route::get('/logout', function() {
 // Affichage (d'un) des Cours (Vue Utilisateur) :
 // ----------------------------------------------
 Route::get('/courses', 'CoursesController@courses')->name('courses.index');
+Route::get('/courses/{slug}', 'CoursesController@course')->name('courses.show');
 
 
 

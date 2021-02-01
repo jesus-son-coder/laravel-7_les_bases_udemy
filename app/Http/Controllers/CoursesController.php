@@ -15,4 +15,12 @@ class CoursesController extends Controller
             'courses' => $courses
         ]);
     }
+
+    public function course($slug)
+    {
+        $course = Course::where('slug',$slug)->firstOrFail();
+        return view('courses.show', [
+            'course' => $course
+        ]);
+    }
 }
