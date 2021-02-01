@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Page d'accueil principale :
+// ---------------------------
 Route::get('/', 'MainController@home')->name('main.home');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -30,6 +32,17 @@ Route::get('/logout', function() {
     return Redirect::to('/');
 })->name('logout');
 
+
+// ----------------------------------------------
+// Affichage (d'un) des Cours (Vue Utilisateur) :
+// ----------------------------------------------
+Route::get('/courses', 'CoursesController@courses')->name('courses.index');
+
+
+
+// ------------------------------------------
+// Administration des Cours (dans la Vue Formateur) :
+// ------------------------------------------
 Route::get('/instructor/overview', 'InstructorController@index')->name('instructor.index');
 Route::get('/instructor/new', 'InstructorController@create')->name('instructor.create');
 Route::post('/instructor/store', 'InstructorController@store')->name('instructor.store');
@@ -37,11 +50,22 @@ Route::get('/instructor/courses/{id}/edit', 'InstructorController@edit')->name('
 Route::put('/instructor/courses/{id}/update', 'InstructorController@update')->name('instructor.update');
 Route::get('/instructor/courses/{id}/delete', 'InstructorController@destroy')->name('instructor.delete');
 
-// Pricing :
+// --------------------------
+// Mise en ligne d'un Cours :
+// --------------------------
+Route::get('/instructor/courses/{id}/publish', 'InstructorController@publish')->name('instructor.publish');
+
+
+// -------------------------
+// Pricing et Tarification :
+// -------------------------
 Route::get('/instructor/courses/{id}/pricing', 'PricingController@pricing')->name('pricing.index');
 Route::post('/instructor/courses/{id}/pricing/store', 'PricingController@store')->name('pricing.store');
 
-// Curriculum et Sections :
+
+// ---------------------------
+// Sections et Plans de Cours:
+// ---------------------------
 Route::get('/instructor/courses/{id}/curriculum', 'CurriculumController@index')->name('instructor.curriculum.index');
 Route::get('/instructor/courses/{id}/curriculum/new', 'CurriculumController@create')->name('instructor.curriculum.create');
 Route::post('/instructor/courses/{id}/curriculum/store', 'CurriculumController@store')->name('instructor.curriculum.store');

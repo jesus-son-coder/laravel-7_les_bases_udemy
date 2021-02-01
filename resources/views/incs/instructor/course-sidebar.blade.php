@@ -5,7 +5,7 @@
         <h4 class="btn text-white pl-0">Modification du cours</h4>
         <ul class="list-unstyled components mb-5">
             <li>
-                <a href="{{route('instructor.curriculum.index', $course->id)}}">Programme</a>
+                <a href="{{route('instructor.curriculum.index', $course->id)}}">Plan du cours et Sections</a>
             </li>
             <li>
                 <a href="#">Page d'accueil du cours</a>
@@ -28,7 +28,7 @@
             </li>
         </ul>
         <div class="d-flex justify-content-around">
-            <a class="primary-btn" href="#">
+            <a class="primary-btn" href="{{ route('instructor.publish', $course->id) }}">
                 <i class="fas fa-check"></i>
                 Mettre en ligne
             </a>

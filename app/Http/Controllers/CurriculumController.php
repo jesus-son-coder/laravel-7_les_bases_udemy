@@ -114,7 +114,7 @@ class CurriculumController extends Controller
         // Supression de la video :
         $fileToDelete = 'public/courses_sections/' . Auth::user()->id . '/' . $section->video;
         if(Storage::exists($fileToDelete)) {
-            Storage::delete($fileToDelete); 
+            Storage::delete($fileToDelete);
         }
 
         $section->delete();
