@@ -8,6 +8,7 @@ use App\Models\Section;
 use Cocur\Slugify\Slugify;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class CurriculumController extends Controller
 {
@@ -109,6 +110,13 @@ class CurriculumController extends Controller
     {
         $course = Course::find($id);
         $section = Section::find($sectionId);
+
+        // Supression de la video :
+        $fileToDelete = 'public/courses_sections/' . Auth::user()->id . '/' . $section->video;
+        if(Storage::exists($fileToDelete)) {
+            Storage::delete($fileToDelete); 
+        }
+
         $section->delete();
 
         return redirect()->route('instructor.curriculum.index', [
