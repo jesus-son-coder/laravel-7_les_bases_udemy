@@ -47,3 +47,4 @@ Route::get('/instructor/courses/{id}/curriculum/new', 'CurriculumController@crea
 Route::post('/instructor/courses/{id}/curriculum/store', 'CurriculumController@store')->name('instructor.curriculum.store');
 Route::get('/instructor/courses/{id}/curriculum/{sectionId}/edit', 'CurriculumController@edit')->name('instructor.curriculum.edit');
 Route::put('/instructor/courses/{id}/curriculum/{sectionId}/update', 'CurriculumController@update')->name('instructor.curriculum.update');
+Route::get('/instructor/courses/{id}/curriculum/{sectionId}/delete', 'CurriculumController@destroy')->name('instructor.curriculum.delete');

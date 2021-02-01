@@ -44,7 +44,10 @@
                                                 </div>
                                                 <div class="col-lg-4">
                                                     <div class="sc-text d-flex justify-content-around">
-                                                        <a class="btn btn-danger" href="#">
+                                                        <a class="btn btn-danger" href="{{ route('instructor.curriculum.delete', [
+    'id' => $course->id,
+    'sectionId' => $section->id
+]) }}">
                                                             <i class="fas fa-trash"></i>
                                                             Supprimer
                                                         </a>
