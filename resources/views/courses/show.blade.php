@@ -71,33 +71,17 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
-                    <div class="blog-item set-bg" data-setbg="https://blog.hyperiondev.com/wp-content/uploads/2019/02/Blog-Types-of-Web-Dev.jpg">
-                        <div class="bi-tag bg-gradient">Catégorie</div>
-                        <div class="bi-text">
-                            <h5><a href="#">Titre du cours</a></h5>
-                            <span><i class="fa fa-clock-o"></i> 20/03/2020</span>
+                @foreach($recommandations as $recommandation)
+                    <div class="col-md-4">
+                        <div class="blog-item set-bg" data-setbg="/storage/courses/{{ $recommandation->user_id }}/{{ $recommandation->image }}">
+                            <div class="bi-tag bg-gradient">{{ $recommandation->category->name }}</div>
+                            <div class="bi-text">
+                                <h5><a href="{{ route('courses.show', $recommandation->slug) }}">{{ $recommandation->title }}</a></h5>
+                                <span><i class="fa fa-clock-o"></i> {{ $recommandation->updated_at }}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="blog-item set-bg" data-setbg="https://blog.hyperiondev.com/wp-content/uploads/2019/02/Blog-Types-of-Web-Dev.jpg">
-                        <div class="bi-tag bg-gradient">Catégorie</div>
-                        <div class="bi-text">
-                            <h5><a href="#">Titre du cours</a></h5>
-                            <span><i class="fa fa-clock-o"></i> 20/03/2020</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="blog-item set-bg" data-setbg="https://blog.hyperiondev.com/wp-content/uploads/2019/02/Blog-Types-of-Web-Dev.jpg">
-                        <div class="bi-tag bg-gradient">Catégorie</div>
-                        <div class="bi-text">
-                            <h5><a href="#">Titre du cours</a></h5>
-                            <span><i class="fa fa-clock-o"></i> 20/03/2020</span>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
