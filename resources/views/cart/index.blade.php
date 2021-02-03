@@ -9,7 +9,7 @@
             @if(count(\Cart::session(Auth::user()->id)->getContent()) > 0)
                 <div class="d-flex justify-content-center">
                     <a href="{{ route('cart.clear') }}" class="btn btn-block btn-light w-25 mb-5">
-                        Vider la panier
+                        Vider le panier
                     </a>
                 </div>
                 <div class="row">
@@ -28,8 +28,22 @@
                                     @endphp
 
                                     <tr>
-                                        <td><img class="cart-img" src="/storage/courses/{{ $produit->model->user_id }}/{{ $produit->model->image }}" /> </td>
-                                        <td><p><b>{{ $produit->name }}</b></p><p>Par {{ $produit->model->user->name }}</p></td>
+
+                                        <td>
+                                            <a href="{{ route('courses.show', $produit->model->slug) }}">
+                                            <img class="cart-img" src="/storage/courses/{{ $produit->model->user_id }}/{{ $produit->model->image }}" /></a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('courses.show', $produit->model->slug) }}">
+                                                <p>
+                                                    <b>{{ $produit->name }}</b>
+                                                </p>
+                                            </a>
+                                            <p>
+                                                Par {{ $produit->model->user->name }}
+                                            </p>
+                                        </td>
+
                                         <td class="text-left">
                                             <small><a class="btn border" href="{{ route('cart.delete', $produit->id) }}">Supprimer</a></small><br>
                                             <small><a class="btn border" href="#">Enregistrer pour plus tard</a></small><br>

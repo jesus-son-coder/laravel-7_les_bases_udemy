@@ -49,19 +49,35 @@
         <li>
             <a href="{{ route('cart.index') }}">
                 <i class="fas fa-shopping-cart"></i>
-                <span class="badge badge-pill badge-danger">1</span>
+                @if(count(\Cart::session(Auth::user()->id)->getContent()) > 0)
+                    <span class="badge badge-pill badge-danger">{{ count(\Cart::session(Auth::user()->id)->getContent()) }}</span>
+                @endif
             </a>
-            <ul class="dropdown px-2 py-2">
-                <li>
-                    <div class="d-flex">
-                        <img class="avatar border-rounded" src="https://blog.hyperiondev.com/wp-content/uploads/2019/02/Blog-Types-of-Web-Dev.jpg"/>
-                        <div class="user-infos ml-3">
-                            <small>Titre du cours</small>
-                            <p class="text-danger">29,99 €</p>
+            @if(count(\Cart::session(Auth::user()->id)->getContent()) > 0)
+                <ul class="dropdown px-2 py-2">
+                    @foreach(\Cart::session(Auth::user()->id)->getContent() as $produit)
+                        <li>
+                            <a href="{{ route('courses.show', $produit->model->slug) }}">
+                                <div class="d-flex">
+                                    <img class="border-rounded" src="/storage/courses/{{ $produit->model->user_id }}/{{ $produit->model->image }}" style="width: 48px;height: 35px" />
+                                    <div class="user-infos ml-3">
+                                        <small>{{ $produit->name }}</small>
+                                        <p class="text-danger">{{ $produit->price }} €</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            @else
+                <ul class="dropdown px-2 py-2 text-center">
+                    <li>
+                        <div class="empty-cart">
+                            <p>Votre panier est vide.</p>
                         </div>
-                    </div>
-                </li>
-            </ul>
+                    </li>
+                </ul>
+            @endif
         </li>
         <li>
             <a href="#">
