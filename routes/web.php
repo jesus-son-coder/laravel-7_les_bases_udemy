@@ -79,4 +79,5 @@ Route::get('/instructor/courses/{id}/curriculum/{sectionId}/delete', 'Curriculum
 // Gestion du Panier d'achat :
 // ---------------------------
 Route::get('/cart', 'CartController@index')->name('cart.index');
-Route::get('/cart/store/{id}', 'CartController@Store')->name('cart.store');
+Route::get('/cart/store/{id}', 'CartController@store')->name('cart.store');
+Route::get('/cart/delete/{id}', 'CartController@delete')->name('cart.delete');
