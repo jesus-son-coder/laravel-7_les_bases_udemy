@@ -38,6 +38,13 @@ class CartController extends Controller
     {
         \Cart::session(Auth::user()->id)->remove($id);
 
-        return redirect()->route('cart.index')->with('success','Cours supprimé de vorte panier !');
+        return redirect()->route('cart.index')->with('success','Cours supprimé de votre panier !');
+    }
+
+    public function clear()
+    {
+        \Cart::session(Auth::user()->id)->clear();
+
+        return redirect()->route('cart.index')->with('success','Votre panier est vidé !');
     }
 }
