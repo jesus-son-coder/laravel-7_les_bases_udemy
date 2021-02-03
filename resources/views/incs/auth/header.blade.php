@@ -80,21 +80,37 @@
             @endif
         </li>
         <li>
-            <a href="#">
+            <a href="{{ route('cart.index') }}">
                 <i class="fas fa-heart"></i>
-                <span class="badge badge-pill badge-danger">1</span>
+                @if(count(\Cart::session(Auth::user()->id . '_wishlist')->getContent()) > 0)
+                    <span class="badge badge-pill badge-danger">{{ count(\Cart::session(Auth::user()->id . '_wishlist')->getContent()) }}</span>
+                @endif
             </a>
+            @if(count(\Cart::session(Auth::user()->id . '_wishlist')->getContent()) > 0)
             <ul class="dropdown px-2 py-2">
-                <li>
-                    <div class="d-flex">
-                        <img class="avatar border-rounded" src="https://blog.hyperiondev.com/wp-content/uploads/2019/02/Blog-Types-of-Web-Dev.jpg"/>
-                        <div class="user-infos ml-3">
-                            <small>Titre du cours</small>
-                            <p class="text-danger">19,99 €</p>
-                        </div>
-                    </div>
-                </li>
+                @foreach(\Cart::session(Auth::user()->id . '_wishlist')->getContent() as $produit)
+                    <li>
+                        <a href="{{ route('courses.show', $produit->model->slug) }}">
+                            <div class="d-flex">
+                                <img class="avatar border-rounded" src="/storage/courses/{{ $produit->model->user_id }}/{{ $produit->model->image }}"  style="width: 48px;height: 35px" />
+                                <div class="user-infos ml-3">
+                                    <small>{{ $produit->name }}</small>
+                                    <p class="text-danger">{{ $produit->price }} €</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                @endforeach
             </ul>
+            @else
+                <ul class="dropdown px-2 py-2 text-center">
+                    <li>
+                        <div class="empty-cart">
+                            <p>Votre liste de souhait est vide.</p>
+                        </div>
+                    </li>
+                </ul>
+            @endif
         </li>
         <li>
             <a class="nav-link" href="#">

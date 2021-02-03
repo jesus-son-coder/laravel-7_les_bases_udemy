@@ -97,7 +97,7 @@
                 </div>
             @endif
         </div>
-        
+
         {{--
         <div class="save-for-later jumbotron my-5">
             <h3>Enregistré pour plus tard</h3>
@@ -121,21 +121,34 @@
 
         <div class="wish-list jumbotron pt-3">
             <h3 class="my-3">Récemment ajouté à la liste de souhaits</h3>
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <tbody>
-                    <tr>
-                        <td><img class="cart-img" src="https://blog.hyperiondev.com/wp-content/uploads/2019/02/Blog-Types-of-Web-Dev.jpg" /> </td>
-                        <td><p><b>Titre du cours</b></p><p>Par Nom du formateur</p></td>
-                        <td class="text-left">
-                            <small><a class="btn border" href="#">Supprimer</a></small><br>
-                            <small><a class="btn border" href="#">Ajouter au panier</a></small>
-                        </td>
-                        <td class="text-right">29,99 €</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+            @if(count(\Cart::session(Auth::user()->id . '_wishlist')->getContent()) > 0)
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <tbody>
+                        @foreach(\Cart::session(Auth::user()->id . '_wishlist')->getContent() as $produit)
+                            <tr>
+                                <td>
+                                    <a href="{{ route('courses.show', $produit->model->slug) }}">
+                                        <img class="cart-img" src="/storage/courses/{{ $produit->model->user_id }}/{{ $produit->model->image }}" />
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('courses.show', $produit->model->slug) }}">
+                                        <p><b>{{ $produit->name }}</b></p>
+                                    </a>
+                                    <p>Par {{ $produit->model->user->name }}</p>
+                                </td>
+                                <td class="text-left">
+                                    <small><a class="btn border" href="{{ route('wishlist.destroy', $produit->id) }}">Supprimer</a></small><br>
+                                    <small><a class="btn border" href="#">Ajouter au panier</a></small>
+                                </td>
+                                <td class="text-right">{{ $produit->price }} €</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @endif
         </div>
     </div>
 

@@ -82,3 +82,10 @@ Route::get('/cart', 'CartController@index')->name('cart.index');
 Route::get('/cart/store/{id}', 'CartController@store')->name('cart.store');
 Route::get('/cart/delete/{id}', 'CartController@delete')->name('cart.delete');
 Route::get('/cart/clear', 'CartController@clear')->name('cart.clear');
+
+
+// ---------------------------
+// La WishList :
+// ---------------------------
+Route::get('/wishlist/store/{id}', 'WishListController@store')->name('wishlist.store');
+Route::get('/wishlist/delete/{id}', 'WishListController@destroy')->name('wishlist.destroy');
