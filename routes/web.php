@@ -73,3 +73,9 @@ Route::post('/instructor/courses/{id}/curriculum/store', 'CurriculumController@s
 Route::get('/instructor/courses/{id}/curriculum/{sectionId}/edit', 'CurriculumController@edit')->name('instructor.curriculum.edit');
 Route::put('/instructor/courses/{id}/curriculum/{sectionId}/update', 'CurriculumController@update')->name('instructor.curriculum.update');
 Route::get('/instructor/courses/{id}/curriculum/{sectionId}/delete', 'CurriculumController@destroy')->name('instructor.curriculum.delete');
+
+
+// ---------------------------
+// Gestion du Panier d'achat :
+// ---------------------------
+Route::get('/cart', 'CartController@index')->name('cart.index');
