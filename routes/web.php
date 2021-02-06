@@ -89,3 +89,13 @@ Route::get('/cart/clear', 'CartController@clear')->name('cart.clear');
 // ---------------------------
 Route::get('/wishlist/store/{id}', 'WishListController@store')->name('wishlist.store');
 Route::get('/wishlist/delete/{id}', 'WishListController@destroy')->name('wishlist.destroy');
+Route::get('/wishlist/toCart/{id}', 'WishListController@toCart')->name('wishlist.toCart');
+Route::get('/wishlist/toWishList/{id}', 'WishListController@toWishList')->name('wishlist.toWishList');
+
+
+// ------------------------------
+// Les Paiements (Checkout) :
+// ------------------------------
+Route::get('/checkout', function() {
+    return view('checkout.payment');
+})->name('checkout.payment');

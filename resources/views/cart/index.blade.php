@@ -46,8 +46,8 @@
 
                                         <td class="text-left">
                                             <small><a class="btn border" href="{{ route('cart.delete', $produit->id) }}">Supprimer</a></small><br>
-                                            <small><a class="btn border" href="#">Enregistrer pour plus tard</a></small><br>
-                                            <small><a class="btn border" href="#">Ajouter à la liste de souhaits</a></small>
+                                            {{-- <small><a class="btn border" href="#">Enregistrer pour plus tard</a></small><br> --}}
+                                            <small><a class="btn border" href="{{ route('wishlist.toWishList', $produit->id) }}">Ajouter à la liste de souhaits</a></small>
                                         </td>
                                         <td class="text-right">{{ $produit->price }} €</td>
                                     </tr>
@@ -81,7 +81,7 @@
                                 <a href="{{ route('courses.index') }}" class="btn btn-block btn-light">Continuer vos achats</a href="#">
                             </div>
                             <div class="col-sm-12 col-md-6 text-right">
-                                <a href="#" class="btn btn-lg btn-block btn-success text-uppercase">Payer</a>
+                                <a href="{{ route('checkout.payment') }}" class="btn btn-lg btn-block btn-success text-uppercase">Payer</a>
                             </div>
                         </div>
                     </div>
@@ -140,7 +140,7 @@
                                 </td>
                                 <td class="text-left">
                                     <small><a class="btn border" href="{{ route('wishlist.destroy', $produit->id) }}">Supprimer</a></small><br>
-                                    <small><a class="btn border" href="#">Ajouter au panier</a></small>
+                                    <small><a class="btn border" href="{{ route('wishlist.toCart', $produit->id) }}">Ajouter au panier</a></small>
                                 </td>
                                 <td class="text-right">{{ $produit->price }} €</td>
                             </tr>

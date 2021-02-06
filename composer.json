@@ -17,7 +17,8 @@
         "james-heinrich/getid3": "^1.9",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^3.2"
+        "laravel/ui": "^3.2",
+        "stripe/stripe-php": "^7.70"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
