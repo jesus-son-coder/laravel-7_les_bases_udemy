@@ -5,9 +5,16 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <form class="jumbotron row contact_form" action="#" method="POST">
-                    {{-- Carte de crédit --}}
-                    <button id="complete-order" type="submit" class="primary-btn my-3">Procéder au paiement</button>
+                <form id="payment-form" class="jumbotron row contact_form" action="{{ route('checkout.charge') }}" method="POST">
+                    @csrf
+                    <div id="card-element" class="col-12">
+                        <!-- Elements will create input elements here -->
+                    </div>
+
+                    <!-- We'll put the error messages in this element -->
+                    <div id="card-errors" role="alert" class="col-12"></div>
+
+                    <button type="submit" class="primary-btn my-3">Procéder au paiement</button>
                 </form>
                 <div class="order-details my-5">
                     <h3>Détails de la commande</h3>
@@ -50,4 +57,103 @@
         </div>
     </div>
 
+@stop
+
+@section('stripe')
+<script>
+    $(document).ready(function() {
+
+        var stripe = Stripe('pk_test_51IGt6uAxJKVVgKTjsgHEAblOIWr3p7KYx06o49Pmc5xon4aJKoPfhBKosvCVBA4rt4d65H2uvwDHdW258TFOzHTl00EzAG0PMA');
+        var elements = stripe.elements();
+        var style = {
+            base: {
+                color: '#32325d',
+                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                fontSmoothing: "antialiased",
+                fontSize: "16px",
+                "::placeholder": {
+                    color: "#aab7c4"
+                }
+            },
+            invalid: {
+                color: '#fa755a',
+                iconColor: '#fa755a'
+            }
+        };
+
+        var card = elements.create("card", { style: style});
+        card.mount('#card-element');
+
+        // Gestion des erreurs :
+        card.addEventListener('change', ({error}) => {
+            const displayError = document.getElementById('card-errors');
+            if(error) {
+                displayError.classList.add('alert', 'alert-warning');
+                displayError.textContent = error.message;
+            } else {
+                displayError.classList.remove('alert', 'alert-warning');
+                displayError.textContent = '';
+            }
+        });
+
+
+        // var checkoutButton = document.getElementById('submit');
+
+        /*
+        checkoutButton.addEventListener('click', function(event) {
+
+            event.preventDefault();
+
+            stripe.confirmCardPayment(clientSecret, {
+                payment_method: {
+                    card: card,
+                    billing_details: {
+                        name: 'Herve Seka'
+                    }
+                }
+            }).then(function(result) {
+                if(result.error) {
+                    console.log(result.error.message);
+                } else {
+                    if(result.paymentIntent.status === 'succeeded') {
+
+                    }
+                }
+            })
+        }); */
+
+        var form = document.getElementById('payment-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            stripe.createToken(card).then(function(result) {
+                if(result.error) {
+                    // Inform the user if there was an error :
+                    var errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = result.error.message;
+                } else {
+                    // Send the token to your server :
+                    stripeTokenHandler(result.token);
+                }
+            });
+        });
+
+        // Submit the form with the token ID
+        function stripeTokenHandler(token) {
+            // Insert the token ID into the form so it gets submitted to the server :
+            var form = document.getElementById('payment-form');
+            var hiddenInput = document.createElement('input');
+            hiddenInput.setAttribute('type', 'hidden');
+            hiddenInput.setAttribute('name', 'stripeToken');
+            hiddenInput.setAttribute('value', token.id);
+            form.appendChild(hiddenInput);
+
+            // submit the form :
+            form.submit();
+
+        }
+
+
+    })
+</script>
 @stop

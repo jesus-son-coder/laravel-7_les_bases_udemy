@@ -96,6 +96,6 @@ Route::get('/wishlist/toWishList/{id}', 'WishListController@toWishList')->name('
 // ------------------------------
 // Les Paiements (Checkout) :
 // ------------------------------
-Route::get('/checkout', function() {
-    return view('checkout.payment');
-})->name('checkout.payment');
+Route::get('/checkout', 'CheckoutController@checkout')->name('checkout.payment');
+Route::post('/checkout/charge', 'CheckoutController@charge')->name('checkout.charge');
+Route::get('/checkout/success', 'CheckoutController@success')->name('checkout.success');

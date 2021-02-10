@@ -43,6 +43,8 @@ class User extends Authenticatable
 
     /* Relation OneToMany entre User/Formateur et Course :
         Un Formateur peut créer un ou plusieurs Courses. */
+
+        
     public function courses()
     {
         return $this->hasMany('App\Models\Course');
